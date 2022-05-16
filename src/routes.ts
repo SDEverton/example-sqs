@@ -1,12 +1,13 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 
 import { Emiter } from './emiter';
 
 const router = Router();
 
-router.get('/', async (req, res) => {
-  await Emiter();
-  res.send('Hello World!');
+router.post('/', async (request: Request, response: Response) => {
+  const { body } = request;
+  await Emiter(body);
+  response.status(201).json();
 });
 
 export { router };

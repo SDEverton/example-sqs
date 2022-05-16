@@ -12,7 +12,7 @@ datasource db {
 
 model Error {
   id          String   @id @default(uuid())
-  reference   String   @unique
+  reference   String
   description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

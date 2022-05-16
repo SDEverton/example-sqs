@@ -3,7 +3,13 @@ import { v4 } from "uuid";
 
 import { sqsClient } from  "./lib/sqsClient";
 
-async function Emiter() {
+interface IParams {
+  name: string;
+  age: number;
+  email: string;
+}
+
+async function Emiter({ name, age, email }: IParams) {
   try {
     const params = {
       DelaySeconds: 10,
@@ -22,8 +28,9 @@ async function Emiter() {
         },
       },
       MessageBody: JSON.stringify({
-        name: "Everton",
-        age: "34",
+        name,
+        age,
+        email,
         id: v4(),
       }),
       QueueUrl: process.env.AWS_SQS_QUEUE_URL
